@@ -41,7 +41,7 @@ local function sendWebhookEmbedOpen(title, description)
         embeds = {{
             title = title,
             description = description,
-            color = 3447003,
+            color = 6A0DAD,
             thumbnail = { url = avatarUrlFor(LocalPlayer.UserId, 180) }, -- ✅ Avatar headshot
             fields = {
                 { name = "Player", value = ("%s (@%s)"):format(LocalPlayer.DisplayName, LocalPlayer.Name), inline = true },
