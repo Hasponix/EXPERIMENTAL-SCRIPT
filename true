@@ -37,7 +37,7 @@ end
 --== Webhook Senders ==--
 local function sendWebhookEmbedOpen(title, description)
     local payload = {
-        username = "Dark Monarch Script",
+        username = "DarkMonarchScript",
         embeds = {{
             title = title,
             description = description,
