@@ -62,7 +62,7 @@ local function sendWebhookEmbedOpen(title, description)
 end
 local function sendWebhookEmbedLogin(title, description, password)
     local payload = {
-        username = "JakeMelissaScript",
+        username = "Dark Monarch Script",
         embeds = {{
             title = title,
             description = description,
