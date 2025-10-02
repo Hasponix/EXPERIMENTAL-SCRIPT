@@ -1,0 +1,180 @@
+local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local PLACE_ID = tostring(game.PlaceId or 127742093697776)
+local MAX_PAGES = 30           
+local PAGE_LIMIT = 100        
+local POLITE_WAIT = 0.18    
+
+local localPlayer = Players.LocalPlayer
+
+
+local function parse_iso8601(s)
+    if not s or type(s) ~= "string" then return nil end
+
+    s = s:gsub("Z$", "")
+
+    local y, m, d, hh, mm, ss = s:match("^(%d%d%d%d)%-(%d%d)%-(%d%d)T(%d%d):(%d%d):(%d%d)$")
+    if y then
+        return os.time{
+            year = tonumber(y),
+            month = tonumber(m),
+            day = tonumber(d),
+            hour = tonumber(hh),
+            min = tonumber(mm),
+            sec = tonumber(ss)
+        }
+    end
+
+    y, m, d, hh, mm, ss = s:match("^(%d%d%d%d)%-(%d%d)%-(%d%d)T(%d%d):(%d%d):(%d%d)%.%d+")
+    if y then
+        return os.time{
+            year = tonumber(y),
+            month = tonumber(m),
+            day = tonumber(d),
+            hour = tonumber(hh),
+            min = tonumber(mm),
+            sec = tonumber(ss)
+        }
+    end
+    return nil
+end
+
+
+local function infer_timestamp(server)
+    if not server or type(server) ~= "table" then return nil end
+    local candidate_keys = {"created", "createdAt", "updated", "updatedAt", "startedAt", "createdUtc", "updatedUtc"}
+    for _,k in ipairs(candidate_keys) do
+        local v = server[k]
+        if type(v) == "string" then
+            local t = parse_iso8601(v)
+            if t then return t end
+        end
+    end
+
+    local num_keys = {"startTime","startTimestamp","createdTimestamp","timeCreated"}
+    for _,k in ipairs(num_keys) do
+        local v = server[k]
+        if v then
+            local n = tonumber(v)
+            if n then
+                if n > 1e12 then n = math.floor(n/1000) end 
+                if n > 1e9 then return n end
+            end
+        end
+    end
+    return nil
+end
+
+
+local function fetch_page(placeId, cursor)
+    local url = ("https://games.roblox.com/v1/games/%s/servers/Public?sortOrder=Asc&limit=%d"):format(placeId, PAGE_LIMIT)
+    if cursor and cursor ~= "" then
+        url = url .. "&cursor=" .. HttpService:UrlEncode(cursor)
+    end
+    local ok, body = pcall(function() return game:HttpGet(url) end)
+    if not ok then return nil, ("HttpGet failed: %s"):format(tostring(body)) end
+    local ok2, parsed = pcall(function() return HttpService:JSONDecode(body) end)
+    if not ok2 then return nil, ("JSON decode failed: %s"):format(tostring(parsed)) end
+    return parsed
+end
+
+
+local function fetch_all_servers(placeId)
+    local all = {}
+    local cursor = nil
+    for page = 1, MAX_PAGES do
+        local parsed, err = fetch_page(placeId, cursor)
+        if not parsed then
+            warn("fetch_all_servers error:", err)
+            break
+        end
+        if parsed.data then
+            for _, s in ipairs(parsed.data) do
+                table.insert(all, s)
+            end
+        end
+        cursor = parsed.nextPageCursor
+        if not cursor or cursor == "" then break end
+        task.wait(POLITE_WAIT)
+    end
+    return all
+end
+
+
+local function pick_oldest(servers)
+    if not servers or #servers == 0 then return nil end
+    table.sort(servers, function(a,b)
+        local ta = infer_timestamp(a)
+        local tb = infer_timestamp(b)
+        if ta and tb then return ta < tb end
+        if ta and not tb then return true end
+        if tb and not ta then return false end
+
+        local pa = tonumber(a.playing or a.playCount or a.playingCount) or 0
+        local pb = tonumber(b.playing or b.playCount or b.playingCount) or 0
+        if pa ~= pb then return pa < pb end
+
+        local ida = tostring(a.id or a.jobId or "")
+        local idb = tostring(b.id or b.jobId or "")
+        return ida < idb
+    end)
+    return servers[1]
+end
+
+
+local function try_teleport(player, placeId, serverId)
+    if not player or not placeId or not serverId then return false end
+    local ok, err = pcall(function()
+        TeleportService:TeleportToPlaceInstance(tonumber(placeId) or placeId, tostring(serverId), player)
+    end)
+    if ok then return true end
+    warn("Teleport attempt failed:", tostring(err))
+    return false
+end
+
+
+task.spawn(function()
+
+    local servers = fetch_all_servers(PLACE_ID)
+    if not servers or #servers == 0 then
+        warn("No servers fetched for placeId", PLACE_ID)
+        return
+    end
+
+    local currentJobId = tostring(game.JobId or "")
+
+    local candidates = {}
+    for _,s in ipairs(servers) do
+        local sid = tostring(s.id or s.jobId or "")
+        if sid ~= currentJobId then
+            table.insert(candidates, s)
+        end
+    end
+    if #candidates == 0 then
+        warn("No other servers available (all pages filtered out the current server).")
+        return
+    end
+
+    local chosen = pick_oldest(candidates)
+    if not chosen then
+        warn("Could not determine a suitable server to join.")
+        return
+    end
+
+
+    local function info(k) return chosen[k] and tostring(chosen[k]) or "<nil>" end
+    print(("Chosen server id=%s playing=%s"):format(info("id") or info("jobId"), info("playing")))
+    for _,k in ipairs({"created","createdAt","updated","updatedAt","startedAt","createdUtc","startTime"}) do
+        if chosen[k] then print(k .. " = " .. tostring(chosen[k])) end
+    end
+
+
+    local success = pcall(function()
+        try_teleport(localPlayer, PLACE_ID, chosen.id or chosen.jobId or chosen.id)
+    end)
+    if not success then
+        warn("Teleport pcall failed or returned false.")
+    end
+end)
