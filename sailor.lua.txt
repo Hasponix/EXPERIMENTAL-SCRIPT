@@ -15,7 +15,7 @@ local RunService = cloneref(game:GetService("RunService"))
 -- [[ ใส่ Service ID ของ PandaAuth ตรงนี้ ]]
 local PandaServiceID = "lumedevkid" 
 -- [[ 🟢 ใส่ DISCORD WEBHOOK URL ของคุณตรงนี้ ]]
-local DiscordWebhookURL = "https://ptb.discord.com/api/webhooks/1467159900986675416/YH8HUBXGpSpuSFiqrJlIncJD_CEoQK-CSvStXj3kKCCbrt6Yi6q19-HnBggxIwE22QKZ"
+local DiscordWebhookURL = "https://discord.com/api/webhooks/1486747662618464499/Wppyj2LN2kG_rpzZaxc6eKfgLPovLQAs9Nr73Cgyas14LozRL_-pAIWjqMc_T8uq3Ofv"
 
 -- ตัวแปร Request สำหรับใช้ทั่วทั้งสคริปต์
 local httpRequest = (syn and syn.request) or (http and http.request) or request or http_request
