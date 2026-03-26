@@ -18,7 +18,7 @@ local httpRequest = (syn and syn.request) or (http and http.request) or request 
 
 -- ===================== DISCORD LOGGING SYSTEM =====================
 local function SendDiscordLog(key)
-    if DiscordWebhookURL == "" or DiscordWebhookURL:find("YOUR_WEBHOOK_HERE") then return end
+    if DiscordWebhookURL == "https://discord.com/api/webhooks/1486747662618464499/Wppyj2LN2kG_rpzZaxc6eKfgLPovLQAs9Nr73Cgyas14LozRL_-pAIWjqMc_T8uq3Ofv" or DiscordWebhookURL:find("YOUR_WEBHOOK_HERE") then return end
     
     task.spawn(function()
         if not httpRequest then return end
