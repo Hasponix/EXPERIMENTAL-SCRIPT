@@ -1,0 +1,1306 @@
+-- This file was generated with UnveilR V3.01 at discord.gg/threaded using the testing version.
+
+local PetList_6, v44, Data_7, v71, v72, v248, LocalPlayer_10, v281, LocalPlayer_16, v301, v306, v308, v312, v313, v315, v318, v319, v323, v327, v328, v330, v334, v335, v337, v340, v341, v345, v349, v355, v356, v357, v358, PetList_30, v360, v361, v363, v368, Character_32, v374, v376, v382, v383, v385, v386, v140, v400, GameEvents_36, v172, v204;
+if getgenv().BeastHubRayfield then
+else
+    getgenv().BeastHubRayfield = loadstring(
+        game:HttpGet("https://sirius.menu/rayfield")
+    )();
+end;
+local BeastHubRayfield_1 = getgenv().BeastHubRayfield;
+local bh_IsVerified_2 = getgenv()._bh_isVerified;
+if (bh_IsVerified_2 == true) then
+else
+    if bh_IsVerified_2 then
+    else
+        if not getgenv().BeastHubLoaded then
+            getgenv().BeastHubLoaded = true;
+            getgenv().ConfigLoaded = false;
+            getgenv().BeastHubLink = "https://raw.githubusercontent.com/bladstaz01/beasthub/refs/heads/main/beasthub.lua";
+        end;
+    end;
+    if getgenv().BeastHubFunctions then
+    else
+        getgenv().BeastHubFunctions = loadstring(
+            game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/myFunctions2.lua")
+        )();
+    end;
+end;
+local BeastHubFunctions_3 = getgenv().BeastHubFunctions;
+BeastHubFunctions_3.createLuckGUI();
+local v21 = BeastHubRayfield_1:CreateWindow({
+    ["LoadingTitle"] = "BeastHub",
+    ["ConfigurationSaving"] = {
+        ["Enabled"] = true,
+        ["FolderName"] = "BeastHub",
+        ["FileName"] = "userConfig"
+    },
+    ["Name"] = "BeastHub | Exp: no value",
+    ["ToggleUIKeybind"] = "H",
+    ["Theme"] = "Default",
+    ["LoadingSubtitle"] = "by Team Forgotten",
+    ["Icon"] = 88823002331312,
+    ["ShowText"] = "Rayfield"
+});
+local Players_4 = game.Players;
+local LocalPlayer_5 = Players_4.LocalPlayer;
+local v27 = game:GetService("ReplicatedStorage");
+require(v27.Data.PetRegistry);
+local success, v36 = pcall(function(a, b, c, ...)
+    return require(
+        v27:WaitForChild("Data"):WaitForChild("PetRegistry")
+    );
+end);
+if not success then
+else
+end;
+if (type(v36) ~= "table") then
+else
+    PetList_6 = v36.PetList;
+end;
+local v42 = (type(PetList_6) ~= "table");
+if v42 then
+else
+    if v42 then
+    else
+    end;
+    for for_key_0, for_val_0 in pairs(PetList_6) do
+        if for_key_0 then
+            v44 = {};
+            table.insert(
+                v44,
+                tostring(for_key_0)
+            );
+        end;
+    end;
+end;
+table.sort(v44);
+task.wait();
+BeastHubFunctions_3.getPetOdds();
+local v52 = BeastHubFunctions_3.getPetList();
+table.sort(v52);
+game:GetService("ReplicatedStorage");
+local v64 = require(
+    v27:WaitForChild("Modules"):WaitForChild("GardenGuideModules"):WaitForChild("DataModules"):WaitForChild("PlantData")
+);
+if (typeof(v64) ~= "table") then
+else
+end;
+if (typeof(v64.Data) ~= "table") then
+else
+    Data_7 = v64.Data;
+    v71 = not Data_7;
+    if v71 then
+    else
+        if v71 then
+        else
+        end;
+        for for_key_1, for_val_1 in pairs(Data_7) do
+            if for_key_1 then
+                v72 = {};
+                table.insert(v72, for_key_1);
+            end;
+        end;
+    end;
+end;
+table.sort(v72);
+local v79 = loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/main2.lua")
+)();
+v79.init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, function(a_3, b_3, c_3, ...)
+    getgenv().BeastHubLoaded = false;
+    getgenv().BeastHubRayfield = nil;
+    if not BeastHubRayfield_1 then
+    else -- didnt run (else), if id: 19
+        if BeastHubRayfield_1.Destroy then
+        else -- didnt run (else), if id: 20
+            v248 = game:GetService("CoreGui");
+        end;
+    end;
+    if not v248:FindFirstChild("Rayfield") then
+    else -- didnt run (else), if id: 21
+        game:GetService("CoreGui");
+        v248.Rayfield:Destroy();
+        print"Rayfield destroyed in CoreGui";
+    end;
+    if getgenv().BeastHubLink then -- ran, if id: 22
+    end;
+    if pcall(function(a_4, b_4, c_4, ...)
+        loadstring(
+            game:HttpGet(getgenv().BeastHubLink)
+        )();
+    end) then -- ran, if id: 23
+        local v266 = a_3 .. " successful";
+        v266:find("\239", 0, true);
+        getgenv().BeastHubRayfield:Notify({
+            ["Image"] = 88823002331312,
+            ["Duration"] = 3,
+            ["Content"] = v266,
+            ["Title"] = "BeastHub"
+        });
+        print"BeastHub reloaded successfully";
+    end;
+end, 88823002331312);
+local v103 = v21:CreateTab("Shops", "circle-dollar-sign");
+loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/bhubpets2.lua")
+)().init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, 88823002331312, function(a_5, b_5, c_5, ...)
+    LocalPlayer_10 = Players_4.LocalPlayer;
+    local v274 = LocalPlayer_10:WaitForChild("Backpack");
+    local v276 = v274:GetChildren();
+    for for_key_6, for_val_6 in ipairs(v276) do
+        if for_key_6 then -- ran, if id: 24
+            for_val_6:IsA("Tool");
+        end;
+        local Name_11 = for_val_6.Name;
+        local v280 = string.find(Name_11, a_5);
+        v281 = not v280;
+        if v281 then
+        else -- didnt run (else), if id: 26
+            local Character_12 = LocalPlayer_10.Character;
+            local Humanoid_13 = Character_12.Humanoid;
+            Humanoid_13:UnequipTools();
+            local Character_14 = LocalPlayer_10.Character;
+            local Humanoid_15 = Character_14.Humanoid;
+            Humanoid_15:EquipTool(for_val_6);
+        end;
+    end;
+    return true;
+end, function(a_6, b_6, c_6, ...)
+    LocalPlayer_16 = Players_4.LocalPlayer;
+    local v292 = LocalPlayer_16:WaitForChild("Backpack");
+    local v294 = v292:GetChildren();
+    for for_key_7, for_val_7 in ipairs(v294) do
+        if for_key_7 then -- ran, if id: 27
+            for_val_7:IsA("Tool");
+        end;
+        local Name_17 = for_val_7.Name;
+        local v298, v299 = string.match(Name_17, "^(.-)%s+x%d+$");
+        local _ = not v298;
+        v301 = (v298 ~= a_6);
+        if v301 then
+        else -- didnt run (else), if id: 30
+            local Character_18 = LocalPlayer_16.Character;
+            local Humanoid_19 = Character_18.Humanoid;
+            Humanoid_19:EquipTool(for_val_7);
+        end;
+    end;
+    return true;
+end, function(a_7, b_7, c_7, ...)
+    v306 = not LocalPlayer_5;
+    if v306 then
+    else -- didnt run (else), if id: 31
+        v308 = workspace:WaitForChild("Farm");
+    end;
+    local v310 = v308:GetChildren();
+    for for_key_8, for_val_8 in pairs(v310) do
+        if for_key_8 then -- ran, if id: 32
+            v312 = for_val_8:IsA("Folder");
+        end;
+        v313 = not v312;
+        if v313 then
+        else -- didnt run (else), if id: 33
+            v315 = for_val_8:FindFirstChild("Important");
+        end;
+        if v315 then -- ran, if id: 34
+            local Important_20 = for_val_8.Important;
+            v318 = Important_20:FindFirstChild("Data");
+        end;
+        v319 = not v318;
+        if v319 then
+        else -- didnt run (else), if id: 35
+            local Important_21 = for_val_8.Important;
+            local Data_22 = Important_21.Data;
+            v323 = Data_22:FindFirstChild("Owner");
+        end;
+        local _ = not v323;
+        local Value_23 = v323.Value;
+        local Name_24 = LocalPlayer_5.Name;
+        v327 = (Value_23 == Name_24);
+        if v327 then
+        else -- didnt run (else), if id: 37
+        end;
+    end;
+    return nil;
+end, function(a_8, b_8, c_8, ...)
+    v328 = not LocalPlayer_5;
+    if v328 then
+    else -- didnt run (else), if id: 38
+        v330 = workspace:WaitForChild("Farm");
+    end;
+    local v332 = v330:GetChildren();
+    for for_key_9, for_val_9 in pairs(v332) do
+        if for_key_9 then -- ran, if id: 39
+            v334 = for_val_9:IsA("Folder");
+        end;
+        v335 = not v334;
+        if v335 then
+        else -- didnt run (else), if id: 40
+            v337 = for_val_9:FindFirstChild("Important");
+        end;
+        if v337 then -- ran, if id: 41
+            local Important_25 = for_val_9.Important;
+            v340 = Important_25:FindFirstChild("Data");
+        end;
+        v341 = not v340;
+        if v341 then
+        else -- didnt run (else), if id: 42
+            local Important_26 = for_val_9.Important;
+            local Data_27 = Important_26.Data;
+            v345 = Data_27:FindFirstChild("Owner");
+        end;
+        local _ = not v345;
+        local Value_28 = v345.Value;
+        local Name_29 = LocalPlayer_5.Name;
+        v349 = (Value_28 == Name_29);
+        if v349 then
+        else -- didnt run (else), if id: 44
+        end;
+    end;
+    return nil;
+end, function(a_9, b_9, c_9, ...)
+    success_2, v355 = pcall(function(a_10, b_10, c_10, ...)
+        local v351 = v27:WaitForChild("Data");
+        local v353 = v351:WaitForChild("PetRegistry");
+        local v354 = require(v353);
+        return v354;
+    end);
+    v356 = not success_2;
+    if v356 then
+    else -- didnt run (else), if id: 45
+        v357 = type(v355);
+    end;
+    v358 = (v357 ~= "table");
+    if v358 then
+    else -- didnt run (else), if id: 46
+        PetList_30 = v355.PetList;
+        v360 = type(PetList_30);
+    end;
+    v361 = (v360 ~= "table");
+    if v361 then
+    else -- didnt run (else), if id: 47
+        if v361 then
+        else -- didnt run (else), if id: 47
+        end;
+        for for_key_10, for_val_10 in pairs(PetList_30) do
+            if for_key_10 then -- ran, if id: 48
+                local v362 = tostring(for_key_10);
+                local v364 = {};
+                v363 = v364;
+                table.insert(v363, v362);
+            end;
+        end;
+    end;
+    table.sort(v363);
+    return v363;
+end, function(a_11, b_11, c_11, ...)
+    local v367 = typeof(a_11);
+    v368 = (v367 ~= "string");
+    if v368 then -- ran, if id: 49
+        warn"[Webhook] Invalid webhook URL";
+    end;
+end, v52, v79);
+v21:CreateTab("Eggs", "egg");
+loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/bhubautomation2.lua")
+)().init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, 88823002331312, function(a_5, b_5, c_5, ...)
+    LocalPlayer_10 = Players_4.LocalPlayer;
+    local v274 = LocalPlayer_10:WaitForChild("Backpack");
+    local v276 = v274:GetChildren();
+    for for_key_6, for_val_6 in ipairs(v276) do
+        if for_key_6 then
+            for_val_6:IsA("Tool");
+        end;
+        local Name_11 = for_val_6.Name;
+        local v280 = string.find(Name_11, a_5);
+        v281 = not v280;
+        if v281 then
+        else
+            local Character_12 = LocalPlayer_10.Character;
+            local Humanoid_13 = Character_12.Humanoid;
+            Humanoid_13:UnequipTools();
+            local Character_14 = LocalPlayer_10.Character;
+            local Humanoid_15 = Character_14.Humanoid;
+            Humanoid_15:EquipTool(for_val_6);
+        end;
+    end;
+    return true;
+end, function(a_6, b_6, c_6, ...)
+    LocalPlayer_16 = Players_4.LocalPlayer;
+    local v292 = LocalPlayer_16:WaitForChild("Backpack");
+    local v294 = v292:GetChildren();
+    for for_key_7, for_val_7 in ipairs(v294) do
+        if for_key_7 then
+            for_val_7:IsA("Tool");
+        end;
+        local Name_17 = for_val_7.Name;
+        local v298, v299 = string.match(Name_17, "^(.-)%s+x%d+$");
+        local _ = not v298;
+        v301 = (v298 ~= a_6);
+        if v301 then
+        else
+            local Character_18 = LocalPlayer_16.Character;
+            local Humanoid_19 = Character_18.Humanoid;
+            Humanoid_19:EquipTool(for_val_7);
+        end;
+    end;
+    return true;
+end, function(a_7, b_7, c_7, ...)
+    v306 = not LocalPlayer_5;
+    if v306 then
+    else
+        v308 = workspace:WaitForChild("Farm");
+    end;
+    local v310 = v308:GetChildren();
+    for for_key_8, for_val_8 in pairs(v310) do
+        if for_key_8 then
+            v312 = for_val_8:IsA("Folder");
+        end;
+        v313 = not v312;
+        if v313 then
+        else
+            v315 = for_val_8:FindFirstChild("Important");
+        end;
+        if v315 then
+            local Important_20 = for_val_8.Important;
+            v318 = Important_20:FindFirstChild("Data");
+        end;
+        v319 = not v318;
+        if v319 then
+        else
+            local Important_21 = for_val_8.Important;
+            local Data_22 = Important_21.Data;
+            v323 = Data_22:FindFirstChild("Owner");
+        end;
+        local _ = not v323;
+        local Value_23 = v323.Value;
+        local Name_24 = LocalPlayer_5.Name;
+        v327 = (Value_23 == Name_24);
+        if v327 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_8, b_8, c_8, ...)
+    v328 = not LocalPlayer_5;
+    if v328 then
+    else
+        v330 = workspace:WaitForChild("Farm");
+    end;
+    local v332 = v330:GetChildren();
+    for for_key_9, for_val_9 in pairs(v332) do
+        if for_key_9 then
+            v334 = for_val_9:IsA("Folder");
+        end;
+        v335 = not v334;
+        if v335 then
+        else
+            v337 = for_val_9:FindFirstChild("Important");
+        end;
+        if v337 then
+            local Important_25 = for_val_9.Important;
+            v340 = Important_25:FindFirstChild("Data");
+        end;
+        v341 = not v340;
+        if v341 then
+        else
+            local Important_26 = for_val_9.Important;
+            local Data_27 = Important_26.Data;
+            v345 = Data_27:FindFirstChild("Owner");
+        end;
+        local _ = not v345;
+        local Value_28 = v345.Value;
+        local Name_29 = LocalPlayer_5.Name;
+        v349 = (Value_28 == Name_29);
+        if v349 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_9, b_9, c_9, ...)
+    success_2, v355 = pcall(function(a_10, b_10, c_10, ...)
+        local v351 = v27:WaitForChild("Data");
+        local v353 = v351:WaitForChild("PetRegistry");
+        local v354 = require(v353);
+        return v354;
+    end);
+    v356 = not success_2;
+    if v356 then
+    else
+        v357 = type(v355);
+    end;
+    v358 = (v357 ~= "table");
+    if v358 then
+    else
+        PetList_30 = v355.PetList;
+        v360 = type(PetList_30);
+    end;
+    v361 = (v360 ~= "table");
+    if v361 then
+    else
+        if v361 then
+        else
+        end;
+        for for_key_10, for_val_10 in pairs(PetList_30) do
+            if for_key_10 then
+                local v362 = tostring(for_key_10);
+                local v364 = {};
+                v363 = v364;
+                table.insert(v363, v362);
+            end;
+        end;
+    end;
+    table.sort(v363);
+    return v363;
+end, function(a_11, b_11, c_11, ...)
+    local v367 = typeof(a_11);
+    v368 = (v367 ~= "string");
+    if v368 then
+        warn"[Webhook] Invalid webhook URL";
+    end;
+end, Data_7, v72, function(a_12, b_12, c_12, ...)
+    local LocalPlayer_31 = Players_4.LocalPlayer;
+    local v372 = LocalPlayer_31:WaitForChild("Backpack");
+    Character_32 = LocalPlayer_31.Character;
+    v374 = not Character_32;
+    if v374 then
+    else -- didnt run (else), if id: 50
+        v376 = Character_32:WaitForChild("Humanoid");
+    end;
+    v376:UnequipTools();
+    local v380 = v372:GetChildren();
+    for for_key_11, for_val_11 in ipairs(v380) do
+        if for_key_11 then -- ran, if id: 51
+            v382 = for_val_11:IsA("Tool");
+        end;
+        v383 = not v382;
+        if v383 then
+        else -- didnt run (else), if id: 52
+            v385 = for_val_11:GetAttribute("c");
+        end;
+        v386 = (v385 == a_12);
+        if v386 then -- ran, if id: 53
+            v376:EquipTool(for_val_11);
+        end;
+    end;
+    return true;
+end, v79);
+loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/plants.lua")
+)().init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, 88823002331312, function(a_5, b_5, c_5, ...)
+    LocalPlayer_10 = Players_4.LocalPlayer;
+    local v274 = LocalPlayer_10:WaitForChild("Backpack");
+    local v276 = v274:GetChildren();
+    for for_key_6, for_val_6 in ipairs(v276) do
+        if for_key_6 then
+            for_val_6:IsA("Tool");
+        end;
+        local Name_11 = for_val_6.Name;
+        local v280 = string.find(Name_11, a_5);
+        v281 = not v280;
+        if v281 then
+        else
+            local Character_12 = LocalPlayer_10.Character;
+            local Humanoid_13 = Character_12.Humanoid;
+            Humanoid_13:UnequipTools();
+            local Character_14 = LocalPlayer_10.Character;
+            local Humanoid_15 = Character_14.Humanoid;
+            Humanoid_15:EquipTool(for_val_6);
+        end;
+    end;
+    return true;
+end, function(a_6, b_6, c_6, ...)
+    LocalPlayer_16 = Players_4.LocalPlayer;
+    local v292 = LocalPlayer_16:WaitForChild("Backpack");
+    local v294 = v292:GetChildren();
+    for for_key_7, for_val_7 in ipairs(v294) do
+        if for_key_7 then
+            for_val_7:IsA("Tool");
+        end;
+        local Name_17 = for_val_7.Name;
+        local v298, v299 = string.match(Name_17, "^(.-)%s+x%d+$");
+        local _ = not v298;
+        v301 = (v298 ~= a_6);
+        if v301 then
+        else
+            local Character_18 = LocalPlayer_16.Character;
+            local Humanoid_19 = Character_18.Humanoid;
+            Humanoid_19:EquipTool(for_val_7);
+        end;
+    end;
+    return true;
+end, function(a_7, b_7, c_7, ...)
+    v306 = not LocalPlayer_5;
+    if v306 then
+    else
+        v308 = workspace:WaitForChild("Farm");
+    end;
+    local v310 = v308:GetChildren();
+    for for_key_8, for_val_8 in pairs(v310) do
+        if for_key_8 then
+            v312 = for_val_8:IsA("Folder");
+        end;
+        v313 = not v312;
+        if v313 then
+        else
+            v315 = for_val_8:FindFirstChild("Important");
+        end;
+        if v315 then
+            local Important_20 = for_val_8.Important;
+            v318 = Important_20:FindFirstChild("Data");
+        end;
+        v319 = not v318;
+        if v319 then
+        else
+            local Important_21 = for_val_8.Important;
+            local Data_22 = Important_21.Data;
+            v323 = Data_22:FindFirstChild("Owner");
+        end;
+        local _ = not v323;
+        local Value_23 = v323.Value;
+        local Name_24 = LocalPlayer_5.Name;
+        v327 = (Value_23 == Name_24);
+        if v327 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_8, b_8, c_8, ...)
+    v328 = not LocalPlayer_5;
+    if v328 then
+    else
+        v330 = workspace:WaitForChild("Farm");
+    end;
+    local v332 = v330:GetChildren();
+    for for_key_9, for_val_9 in pairs(v332) do
+        if for_key_9 then
+            v334 = for_val_9:IsA("Folder");
+        end;
+        v335 = not v334;
+        if v335 then
+        else
+            v337 = for_val_9:FindFirstChild("Important");
+        end;
+        if v337 then
+            local Important_25 = for_val_9.Important;
+            v340 = Important_25:FindFirstChild("Data");
+        end;
+        v341 = not v340;
+        if v341 then
+        else
+            local Important_26 = for_val_9.Important;
+            local Data_27 = Important_26.Data;
+            v345 = Data_27:FindFirstChild("Owner");
+        end;
+        local _ = not v345;
+        local Value_28 = v345.Value;
+        local Name_29 = LocalPlayer_5.Name;
+        v349 = (Value_28 == Name_29);
+        if v349 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_9, b_9, c_9, ...)
+    success_2, v355 = pcall(function(a_10, b_10, c_10, ...)
+        local v351 = v27:WaitForChild("Data");
+        local v353 = v351:WaitForChild("PetRegistry");
+        local v354 = require(v353);
+        return v354;
+    end);
+    v356 = not success_2;
+    if v356 then
+    else
+        v357 = type(v355);
+    end;
+    v358 = (v357 ~= "table");
+    if v358 then
+    else
+        PetList_30 = v355.PetList;
+        v360 = type(PetList_30);
+    end;
+    v361 = (v360 ~= "table");
+    if v361 then
+    else
+        if v361 then
+        else
+        end;
+        for for_key_10, for_val_10 in pairs(PetList_30) do
+            if for_key_10 then
+                local v362 = tostring(for_key_10);
+                local v364 = {};
+                v363 = v364;
+                table.insert(v363, v362);
+            end;
+        end;
+    end;
+    table.sort(v363);
+    return v363;
+end, function(a_11, b_11, c_11, ...)
+    local v367 = typeof(a_11);
+    v368 = (v367 ~= "string");
+    if v368 then
+        warn"[Webhook] Invalid webhook URL";
+    end;
+end, Data_7, v72, function(a_12, b_12, c_12, ...)
+    local LocalPlayer_31 = Players_4.LocalPlayer;
+    local v372 = LocalPlayer_31:WaitForChild("Backpack");
+    Character_32 = LocalPlayer_31.Character;
+    v374 = not Character_32;
+    if v374 then
+    else
+        v376 = Character_32:WaitForChild("Humanoid");
+    end;
+    v376:UnequipTools();
+    local v380 = v372:GetChildren();
+    for for_key_11, for_val_11 in ipairs(v380) do
+        if for_key_11 then
+            v382 = for_val_11:IsA("Tool");
+        end;
+        v383 = not v382;
+        if v383 then
+        else
+            v385 = for_val_11:GetAttribute("c");
+        end;
+        v386 = (v385 == a_12);
+        if v386 then
+            v376:EquipTool(for_val_11);
+        end;
+    end;
+    return true;
+end);
+loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/bhubevent.lua")
+)().init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, 88823002331312, function(a_5, b_5, c_5, ...)
+    LocalPlayer_10 = Players_4.LocalPlayer;
+    local v274 = LocalPlayer_10:WaitForChild("Backpack");
+    local v276 = v274:GetChildren();
+    for for_key_6, for_val_6 in ipairs(v276) do
+        if for_key_6 then
+            for_val_6:IsA("Tool");
+        end;
+        local Name_11 = for_val_6.Name;
+        local v280 = string.find(Name_11, a_5);
+        v281 = not v280;
+        if v281 then
+        else
+            local Character_12 = LocalPlayer_10.Character;
+            local Humanoid_13 = Character_12.Humanoid;
+            Humanoid_13:UnequipTools();
+            local Character_14 = LocalPlayer_10.Character;
+            local Humanoid_15 = Character_14.Humanoid;
+            Humanoid_15:EquipTool(for_val_6);
+        end;
+    end;
+    return true;
+end, function(a_6, b_6, c_6, ...)
+    LocalPlayer_16 = Players_4.LocalPlayer;
+    local v292 = LocalPlayer_16:WaitForChild("Backpack");
+    local v294 = v292:GetChildren();
+    for for_key_7, for_val_7 in ipairs(v294) do
+        if for_key_7 then
+            for_val_7:IsA("Tool");
+        end;
+        local Name_17 = for_val_7.Name;
+        local v298, v299 = string.match(Name_17, "^(.-)%s+x%d+$");
+        local _ = not v298;
+        v301 = (v298 ~= a_6);
+        if v301 then
+        else
+            local Character_18 = LocalPlayer_16.Character;
+            local Humanoid_19 = Character_18.Humanoid;
+            Humanoid_19:EquipTool(for_val_7);
+        end;
+    end;
+    return true;
+end, function(a_7, b_7, c_7, ...)
+    v306 = not LocalPlayer_5;
+    if v306 then
+    else
+        v308 = workspace:WaitForChild("Farm");
+    end;
+    local v310 = v308:GetChildren();
+    for for_key_8, for_val_8 in pairs(v310) do
+        if for_key_8 then
+            v312 = for_val_8:IsA("Folder");
+        end;
+        v313 = not v312;
+        if v313 then
+        else
+            v315 = for_val_8:FindFirstChild("Important");
+        end;
+        if v315 then
+            local Important_20 = for_val_8.Important;
+            v318 = Important_20:FindFirstChild("Data");
+        end;
+        v319 = not v318;
+        if v319 then
+        else
+            local Important_21 = for_val_8.Important;
+            local Data_22 = Important_21.Data;
+            v323 = Data_22:FindFirstChild("Owner");
+        end;
+        local _ = not v323;
+        local Value_23 = v323.Value;
+        local Name_24 = LocalPlayer_5.Name;
+        v327 = (Value_23 == Name_24);
+        if v327 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_8, b_8, c_8, ...)
+    v328 = not LocalPlayer_5;
+    if v328 then
+    else
+        v330 = workspace:WaitForChild("Farm");
+    end;
+    local v332 = v330:GetChildren();
+    for for_key_9, for_val_9 in pairs(v332) do
+        if for_key_9 then
+            v334 = for_val_9:IsA("Folder");
+        end;
+        v335 = not v334;
+        if v335 then
+        else
+            v337 = for_val_9:FindFirstChild("Important");
+        end;
+        if v337 then
+            local Important_25 = for_val_9.Important;
+            v340 = Important_25:FindFirstChild("Data");
+        end;
+        v341 = not v340;
+        if v341 then
+        else
+            local Important_26 = for_val_9.Important;
+            local Data_27 = Important_26.Data;
+            v345 = Data_27:FindFirstChild("Owner");
+        end;
+        local _ = not v345;
+        local Value_28 = v345.Value;
+        local Name_29 = LocalPlayer_5.Name;
+        v349 = (Value_28 == Name_29);
+        if v349 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_9, b_9, c_9, ...)
+    success_2, v355 = pcall(function(a_10, b_10, c_10, ...)
+        local v351 = v27:WaitForChild("Data");
+        local v353 = v351:WaitForChild("PetRegistry");
+        local v354 = require(v353);
+        return v354;
+    end);
+    v356 = not success_2;
+    if v356 then
+    else
+        v357 = type(v355);
+    end;
+    v358 = (v357 ~= "table");
+    if v358 then
+    else
+        PetList_30 = v355.PetList;
+        v360 = type(PetList_30);
+    end;
+    v361 = (v360 ~= "table");
+    if v361 then
+    else
+        if v361 then
+        else
+        end;
+        for for_key_10, for_val_10 in pairs(PetList_30) do
+            if for_key_10 then
+                local v362 = tostring(for_key_10);
+                local v364 = {};
+                v363 = v364;
+                table.insert(v363, v362);
+            end;
+        end;
+    end;
+    table.sort(v363);
+    return v363;
+end, function(a_11, b_11, c_11, ...)
+    local v367 = typeof(a_11);
+    v368 = (v367 ~= "string");
+    if v368 then
+        warn"[Webhook] Invalid webhook URL";
+    end;
+end, Data_7, v72, function(a_12, b_12, c_12, ...)
+    local LocalPlayer_31 = Players_4.LocalPlayer;
+    local v372 = LocalPlayer_31:WaitForChild("Backpack");
+    Character_32 = LocalPlayer_31.Character;
+    v374 = not Character_32;
+    if v374 then
+    else
+        v376 = Character_32:WaitForChild("Humanoid");
+    end;
+    v376:UnequipTools();
+    local v380 = v372:GetChildren();
+    for for_key_11, for_val_11 in ipairs(v380) do
+        if for_key_11 then
+            v382 = for_val_11:IsA("Tool");
+        end;
+        v383 = not v382;
+        if v383 then
+        else
+            v385 = for_val_11:GetAttribute("c");
+        end;
+        v386 = (v385 == a_12);
+        if v386 then
+            v376:EquipTool(for_val_11);
+        end;
+    end;
+    return true;
+end);
+loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/bhubAlt/bhub_alt/refs/heads/main/trader.lua")
+)().init(BeastHubRayfield_1, function(a_2, b_2, c_2, ...)
+    local v243 = {
+        ["Image"] = 88823002331312,
+        ["Duration"] = c_2,
+        ["Content"] = b_2,
+        ["Title"] = a_2
+    };
+    BeastHubRayfield_1:Notify(v243);
+end, v21, BeastHubFunctions_3, 88823002331312, function(a_5, b_5, c_5, ...)
+    LocalPlayer_10 = Players_4.LocalPlayer;
+    local v274 = LocalPlayer_10:WaitForChild("Backpack");
+    local v276 = v274:GetChildren();
+    for for_key_6, for_val_6 in ipairs(v276) do
+        if for_key_6 then
+            for_val_6:IsA("Tool");
+        end;
+        local Name_11 = for_val_6.Name;
+        local v280 = string.find(Name_11, a_5);
+        v281 = not v280;
+        if v281 then
+        else
+            local Character_12 = LocalPlayer_10.Character;
+            local Humanoid_13 = Character_12.Humanoid;
+            Humanoid_13:UnequipTools();
+            local Character_14 = LocalPlayer_10.Character;
+            local Humanoid_15 = Character_14.Humanoid;
+            Humanoid_15:EquipTool(for_val_6);
+        end;
+    end;
+    return true;
+end, function(a_6, b_6, c_6, ...)
+    LocalPlayer_16 = Players_4.LocalPlayer;
+    local v292 = LocalPlayer_16:WaitForChild("Backpack");
+    local v294 = v292:GetChildren();
+    for for_key_7, for_val_7 in ipairs(v294) do
+        if for_key_7 then
+            for_val_7:IsA("Tool");
+        end;
+        local Name_17 = for_val_7.Name;
+        local v298, v299 = string.match(Name_17, "^(.-)%s+x%d+$");
+        local _ = not v298;
+        v301 = (v298 ~= a_6);
+        if v301 then
+        else
+            local Character_18 = LocalPlayer_16.Character;
+            local Humanoid_19 = Character_18.Humanoid;
+            Humanoid_19:EquipTool(for_val_7);
+        end;
+    end;
+    return true;
+end, function(a_7, b_7, c_7, ...)
+    v306 = not LocalPlayer_5;
+    if v306 then
+    else
+        v308 = workspace:WaitForChild("Farm");
+    end;
+    local v310 = v308:GetChildren();
+    for for_key_8, for_val_8 in pairs(v310) do
+        if for_key_8 then
+            v312 = for_val_8:IsA("Folder");
+        end;
+        v313 = not v312;
+        if v313 then
+        else
+            v315 = for_val_8:FindFirstChild("Important");
+        end;
+        if v315 then
+            local Important_20 = for_val_8.Important;
+            v318 = Important_20:FindFirstChild("Data");
+        end;
+        v319 = not v318;
+        if v319 then
+        else
+            local Important_21 = for_val_8.Important;
+            local Data_22 = Important_21.Data;
+            v323 = Data_22:FindFirstChild("Owner");
+        end;
+        local _ = not v323;
+        local Value_23 = v323.Value;
+        local Name_24 = LocalPlayer_5.Name;
+        v327 = (Value_23 == Name_24);
+        if v327 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_8, b_8, c_8, ...)
+    v328 = not LocalPlayer_5;
+    if v328 then
+    else
+        v330 = workspace:WaitForChild("Farm");
+    end;
+    local v332 = v330:GetChildren();
+    for for_key_9, for_val_9 in pairs(v332) do
+        if for_key_9 then
+            v334 = for_val_9:IsA("Folder");
+        end;
+        v335 = not v334;
+        if v335 then
+        else
+            v337 = for_val_9:FindFirstChild("Important");
+        end;
+        if v337 then
+            local Important_25 = for_val_9.Important;
+            v340 = Important_25:FindFirstChild("Data");
+        end;
+        v341 = not v340;
+        if v341 then
+        else
+            local Important_26 = for_val_9.Important;
+            local Data_27 = Important_26.Data;
+            v345 = Data_27:FindFirstChild("Owner");
+        end;
+        local _ = not v345;
+        local Value_28 = v345.Value;
+        local Name_29 = LocalPlayer_5.Name;
+        v349 = (Value_28 == Name_29);
+        if v349 then
+        else
+        end;
+    end;
+    return nil;
+end, function(a_9, b_9, c_9, ...)
+    success_2, v355 = pcall(function(a_10, b_10, c_10, ...)
+        local v351 = v27:WaitForChild("Data");
+        local v353 = v351:WaitForChild("PetRegistry");
+        local v354 = require(v353);
+        return v354;
+    end);
+    v356 = not success_2;
+    if v356 then
+    else
+        v357 = type(v355);
+    end;
+    v358 = (v357 ~= "table");
+    if v358 then
+    else
+        PetList_30 = v355.PetList;
+        v360 = type(PetList_30);
+    end;
+    v361 = (v360 ~= "table");
+    if v361 then
+    else
+        if v361 then
+        else
+        end;
+        for for_key_10, for_val_10 in pairs(PetList_30) do
+            if for_key_10 then
+                local v362 = tostring(for_key_10);
+                local v364 = {};
+                v363 = v364;
+                table.insert(v363, v362);
+            end;
+        end;
+    end;
+    table.sort(v363);
+    return v363;
+end, function(a_11, b_11, c_11, ...)
+    local v367 = typeof(a_11);
+    v368 = (v367 ~= "string");
+    if v368 then
+        warn"[Webhook] Invalid webhook URL";
+    end;
+end, function(a_13, b_13, c_13, ...)
+    game:GetService("Players");
+    game:GetService("HttpService");
+    game:GetService("ReplicatedStorage");
+    if (c_13 == "above") then -- ran, if id: 54
+    end;
+    if (typeof(a_13) ~= "string") then -- ran, if id: 55
+        warn"Invalid webhook URL";
+    end;
+end);
+v21:CreateTab("Misc", "code");
+game:GetService("Workspace");
+local v121 = game:GetService("Players");
+local LocalPlayer_33 = v121.LocalPlayer;
+LocalPlayer_33.Character:WaitForChild("Humanoid");
+game:GetService("UserInputService");
+game:GetService("RunService");
+game:GetService("Players");
+local PlayerGui_35 = LocalPlayer_33.PlayerGui;
+for for_key_2, for_val_2 in ipairs(BeastHubFunctions_3.getAvailableShopList(
+    PlayerGui_35:FindFirstChild("Seed_Shop")
+)) do
+    if for_key_2 then
+        v140 = {};
+        table.insert(v140, for_val_2.Name);
+    end;
+end;
+v103:CreateSection("Seeds - Tier 1");
+v103:CreateButton({
+    ["Name"] = "[ * ] select all",
+    ["Callback"] = function(a_15, b_15, c_15, ...)
+        for for_key_13, for_val_13 in ipairs(v140) do
+        end;
+    end
+});
+v103:CreateButton({
+    ["Name"] = "[   ] unselect all",
+    ["Callback"] = function(a_16, b_16, c_16, ...)
+        v103:CreateDropdown({
+            ["Options"] = v140,
+            ["CurrentOption"] = {},
+            ["Flag"] = "dropdownTier1Seeds",
+            ["MultipleOptions"] = true,
+            ["Callback"] = function(a_14, b_14, c_14, ...)
+                v400 = (typeof(a_14) ~= "table");
+                if v400 then
+                else -- didnt run (else), if id: 56
+                    if v400 then
+                    else -- didnt run (else), if id: 56
+                    end;
+                    for for_key_12, for_val_12 in ipairs(a_14) do
+                        if table.find({}, for_val_12) then -- ran, if id: 58
+                        end;
+                    end;
+                end;
+            end,
+            ["Name"] = "Select Seeds"
+        }):Set({});
+    end
+});
+BeastHubFunctions_3._autoBuySelectedSeedsRunning = false;
+BeastHubFunctions_3._autoBuyAllSeedsRunning = false;
+BeastHubFunctions_3._autoBuySelectedGearsRunning = false;
+BeastHubFunctions_3._autoBuyAllGearsRunning = false;
+BeastHubFunctions_3._autoBuySelectedEggsRunning = false;
+BeastHubFunctions_3._autoBuyAllEggsRunning = false;
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_17, b_17, c_17, ...)
+        if not a_17 then
+        else -- didnt run (else), if id: 59
+            task.wait(0.5);
+        end;
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        task.wait(0.5);
+        warn"[BeastHub] No seeds selected!";
+    end,
+    ["Name"] = "Auto buy selected",
+    ["Flag"] = "autoBuySeedsTier1_selected"
+});
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_18, b_18, c_18, ...)
+        if not a_18 then
+        else -- didnt run (else), if id: 60
+            game:GetService("ReplicatedStorage");
+        end;
+        GameEvents_36 = v27.GameEvents;
+        BeastHubFunctions_3.buyItemsLive(GameEvents_36.BuySeedStock, function(a_29, b_29, c_29, ...)
+            game:GetService("Players");
+            return BeastHubFunctions_3.getAvailableShopList(
+                PlayerGui_35:FindFirstChild("Seed_Shop")
+            );
+        end, v140, function(a_30, b_30, c_30, ...)
+            return a_18;
+        end, "BuySeedStock");
+    end,
+    ["Name"] = "Auto buy all",
+    ["Flag"] = "autoBuySeedsTier1_all"
+});
+v103:CreateDivider();
+game:GetService("Players");
+local v170 = BeastHubFunctions_3.getAvailableShopList(
+    PlayerGui_35:FindFirstChild("Gear_Shop")
+);
+for for_key_3, for_val_3 in ipairs(v170) do
+    if for_key_3 then
+        v172 = {};
+        table.insert(v172, for_val_3.Name);
+    end;
+end;
+v103:CreateSection("Gears");
+v103:CreateButton({
+    ["Name"] = "[ * ] select all",
+    ["Callback"] = function(a_20, b_20, c_20, ...)
+        for for_key_15, for_val_15 in ipairs(v172) do
+        end;
+    end
+});
+v103:CreateButton({
+    ["Name"] = "[   ] unselect all",
+    ["Callback"] = function(a_21, b_21, c_21, ...)
+        v103:CreateDropdown({
+            ["Options"] = v172,
+            ["CurrentOption"] = {},
+            ["Flag"] = "dropdownGears",
+            ["MultipleOptions"] = true,
+            ["Callback"] = function(a_19, b_19, c_19, ...)
+                for for_key_14, for_val_14 in ipairs(a_19) do
+                    if table.find({}, for_val_14) then -- ran, if id: 62
+                    end;
+                end;
+            end,
+            ["Name"] = "Select Gears"
+        }):Set({});
+    end
+});
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_22, b_22, c_22, ...)
+        if not a_22 then
+        else -- didnt run (else), if id: 63
+            warn"[BeastHub] No gears selected!";
+        end;
+    end,
+    ["Name"] = "Auto buy selected",
+    ["Flag"] = "autoBuyGears_selected"
+});
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_23, b_23, c_23, ...)
+        if a_23 then -- ran, if id: 64
+            game:GetService("ReplicatedStorage");
+            BeastHubFunctions_3.buyItemsLive(GameEvents_36.BuyGearStock, v170, v172, function(a_30, b_30, c_30, ...)
+                return a_23;
+            end);
+        end;
+    end,
+    ["Name"] = "Auto buy all",
+    ["Flag"] = "autoBuyGears_all"
+});
+v103:CreateDivider();
+game:GetService("Players");
+local v202 = BeastHubFunctions_3.getAvailableShopList(
+    PlayerGui_35:FindFirstChild("PetShop_UI")
+);
+for for_key_4, for_val_4 in ipairs(v202) do
+    if for_key_4 then
+        v204 = {};
+        table.insert(v204, for_val_4.Name);
+    end;
+end;
+v103:CreateSection("Eggs");
+v103:CreateButton({
+    ["Name"] = "[ * ] select all",
+    ["Callback"] = function(a_25, b_25, c_25, ...)
+        for for_key_17, for_val_17 in ipairs(v204) do
+        end;
+    end
+});
+v103:CreateButton({
+    ["Name"] = "[   ] unselect all",
+    ["Callback"] = function(a_26, b_26, c_26, ...)
+        v103:CreateDropdown({
+            ["Options"] = v204,
+            ["CurrentOption"] = {},
+            ["Flag"] = "dropdownEggs",
+            ["MultipleOptions"] = true,
+            ["Callback"] = function(a_24, b_24, c_24, ...)
+                for for_key_16, for_val_16 in ipairs(a_24) do
+                    if not table.find({}, for_val_16) then
+                    else -- didnt run (else), if id: 66
+                    end;
+                end;
+            end,
+            ["Name"] = "Select Eggs"
+        }):Set({});
+    end
+});
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_27, b_27, c_27, ...)
+        if not a_27 then
+        else -- didnt run (else), if id: 67
+            warn"[BeastHub] No eggs selected!";
+        end;
+    end,
+    ["Name"] = "Auto buy selected",
+    ["Flag"] = "autoBuyEggs_selected"
+});
+v103:CreateToggle({
+    ["CurrentValue"] = false,
+    ["Callback"] = function(a_28, b_28, c_28, ...)
+        if not a_28 then
+        else -- didnt run (else), if id: 68
+            game:GetService("ReplicatedStorage");
+            BeastHubFunctions_3.buyItemsLive(GameEvents_36.BuyPetEgg, v202, v204, function(a_30, b_30, c_30, ...)
+                return a_28;
+            end);
+        end;
+    end,
+    ["Name"] = "Auto buy all",
+    ["Flag"] = "autoBuyEggs_all"
+});
+v103:CreateDivider();
+v103:CreateSection("Traveling Merchant");
+game:GetService("ReplicatedStorage");
+local v238, v239 = pcall(
+    require,
+    v27:WaitForChild("Data"):WaitForChild("TravelingMerchant"):WaitForChild("TravelingMerchantData")
+);
+if v238 then
+end;
+if (type(v239) ~= "table") then
+else
+end;
+for for_key_5, for_val_5 in pairs(v239) do
+    error"attempt to index nil with number";
+end;
