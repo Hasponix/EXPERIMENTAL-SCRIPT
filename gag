@@ -1,6 +1,3 @@
--- This file was generated with UnveilR V3.01 at discord.gg/threaded using the testing version.
-
-local v3, LocalPlayer_1, v7;
 if (game.GameId ~= 7436755782) then
 else -- didnt run (else), if id: 1
     v3 = game:GetService("Players");
